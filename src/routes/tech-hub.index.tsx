@@ -45,9 +45,8 @@ function TechHub() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <Link
             to="/tech-hub/mobile"
-            className="group polaroid rotate-[-1.5deg] pb-5"
+            className="group overflow-hidden rounded-xl border border-line bg-surface pb-5 shadow-card transition-transform duration-200 hover:-translate-y-1"
           >
-            <span className="tape" aria-hidden />
             <img
               src="/images/tech-hub-mobile.jpg"
               alt=""
@@ -64,14 +63,13 @@ function TechHub() {
               </span>
             </div>
           </Link>
-          {hubGuides.map((guide, i) => (
+          {hubGuides.map((guide) => (
             <Link
               key={guide.slug}
               to="/tech-hub/$slug"
               params={{ slug: guide.slug }}
-              className={`group polaroid pb-5 ${i % 2 === 0 ? "rotate-[1.6deg]" : "rotate-[-1.3deg]"}`}
+              className="group overflow-hidden rounded-xl border border-line bg-surface pb-5 shadow-card transition-transform duration-200 hover:-translate-y-1"
             >
-              <span className="tape" aria-hidden />
               <img src={guide.image} alt="" className="aspect-[16/10] w-full object-cover" />
               <div className="px-1 pt-4">
                 <h3 className="font-display text-xl font-semibold text-ink">{guide.title}</h3>

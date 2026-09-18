@@ -76,10 +76,9 @@ function Home() {
             <Polaroid
               src="/images/hero.jpg"
               alt="Computer and mobile repair"
-              caption="bench notes — Vijayawada"
               className="lg:ml-6"
             />
-            <div className="sticker absolute -bottom-4 left-2 flex rotate-[-4deg] items-center gap-3 border border-ink/10 bg-surface px-4 py-3 shadow-card sm:left-4">
+            <div className="absolute -bottom-4 left-2 flex items-center gap-3 rounded-xl border border-ink/10 bg-surface px-4 py-3 shadow-card sm:left-4">
               <span className="flex size-10 items-center justify-center rounded-md bg-primary text-on-primary">
                 <BadgeCheck className="size-5" />
               </span>
@@ -99,8 +98,6 @@ function Home() {
           <Polaroid
             src="/images/why-choose.jpg"
             alt="Technician repairing a computer"
-            caption="real work, real parts"
-            tilt="rotate-[1.8deg]"
           />
           <div>
             <SketchTag>Why Star Computers</SketchTag>
@@ -147,14 +144,13 @@ function Home() {
             </p>
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((service, i) => (
+            {services.map((service) => (
               <Link
                 key={service.slug}
                 to="/services"
                 hash={service.slug}
-                className={`group polaroid pb-5 ${i % 2 === 0 ? "rotate-[-1.6deg]" : "rotate-[1.4deg]"}`}
+                className="group overflow-hidden rounded-xl border border-line bg-surface pb-5 shadow-card transition-transform duration-200 hover:-translate-y-1"
               >
-                <span className="tape" aria-hidden />
                 <img src={service.image} alt="" className="aspect-[16/10] w-full object-cover" />
                 <div className="px-1 pt-4">
                   <h3 className="font-display text-lg font-semibold text-ink">{service.title}</h3>
@@ -201,10 +197,10 @@ function Home() {
           <SketchWord className="text-3xl">say</SketchWord>
         </h2>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t, i) => (
+          {testimonials.map((t) => (
             <figure
               key={t.name}
-              className={`sticker border border-line bg-surface p-6 ${i === 1 ? "rotate-[1.2deg]" : "rotate-[-1.1deg]"}`}
+              className="rounded-xl border border-line bg-surface p-6"
             >
               <div className="flex items-center gap-3">
                 <span className="flex size-10 items-center justify-center rounded-full bg-paper font-marker text-lg text-primary">

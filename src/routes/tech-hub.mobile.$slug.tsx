@@ -55,8 +55,17 @@ function TopicPage() {
             </p>
           </div>
         </header>
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_16rem]">
-          <ArticleBody blocks={ramStorageBlocks} skipFirstImage={false} />
+        <div className="border-b border-line bg-surface">
+          <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+            <img
+              src="/images/ram-storage-banner.jpg"
+              alt="Mobile RAM & Storage"
+              className="w-full object-contain"
+            />
+          </div>
+        </div>
+        <div className="mx-auto grid w-full min-w-0 max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_16rem]">
+          <ArticleBody blocks={ramStorageBlocks} skipFirstImage />
           <aside className="hidden lg:block">
             <div className="sticky top-28 rounded-xl border border-line bg-surface p-4">
               <p className="text-xs font-semibold tracking-[0.16em] text-primary uppercase">
@@ -65,7 +74,7 @@ function TopicPage() {
               <ul className="mt-3 space-y-2 text-sm">
                 {toc.map((h) => (
                   <li key={h}>
-                    <a href={`#${slugify(h)}`} className="text-muted hover:text-primary">
+                    <a href={`#${slugify(h)}`} className="font-sketch text-lg text-primary hover:underline">
                       {h}
                     </a>
                   </li>

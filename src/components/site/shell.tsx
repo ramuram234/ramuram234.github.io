@@ -15,7 +15,7 @@ export function Shell({ current, children }: { current: string; children: ReactN
         Skip to content
       </a>
       <Header current={current} />
-      <main id="main" className="relative z-10 flex-1">
+      <main id="main" className="relative z-10 min-w-0 flex-1 overflow-x-hidden">
         {children}
       </main>
       <Footer />

@@ -41,11 +41,7 @@ function Services() {
             className="grid scroll-mt-28 items-center gap-8 lg:grid-cols-2"
           >
             <div className={i % 2 === 1 ? "lg:order-2" : undefined}>
-              <Polaroid
-                src={service.image}
-                alt={service.title}
-                tilt={i % 2 === 1 ? "rotate-[1.8deg]" : "rotate-[-1.8deg]"}
-              />
+              <Polaroid src={service.image} alt={service.title} />
             </div>
             <div>
               <p className="font-marker text-lg text-primary">

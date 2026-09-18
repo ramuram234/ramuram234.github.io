@@ -63,7 +63,6 @@ function MobileTech() {
                     stroke="currentColor"
                     strokeWidth="1.6"
                     strokeDasharray="4 5"
-                    className="origin-center transition-transform duration-300 group-hover:rotate-6"
                   />
                 </svg>
                 <span className="block size-full overflow-hidden rounded-full border border-line">

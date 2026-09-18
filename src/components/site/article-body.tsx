@@ -32,7 +32,7 @@ export function ArticleBody({
               key={img.src}
               className="overflow-hidden rounded-xl border border-line bg-paper"
             >
-              <img src={img.src} alt={img.alt} className="w-full object-cover" />
+              <img src={img.src} alt={img.alt} className="max-w-full w-full object-contain" />
               {img.alt ? (
                 <figcaption className="px-4 py-2.5 text-xs text-muted">{img.alt}</figcaption>
               ) : null}
@@ -134,5 +134,5 @@ export function ArticleBody({
     i += 1;
   }
 
-  return <div className="space-y-6">{nodes}</div>;
+  return <div className="min-w-0 space-y-6">{nodes}</div>;
 }

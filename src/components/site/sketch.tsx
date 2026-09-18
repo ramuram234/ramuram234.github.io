@@ -53,20 +53,17 @@ export function Polaroid({
   alt,
   caption,
   className,
-  tilt = "rotate-[-2.4deg]",
 }: {
   src: string;
   alt: string;
   caption?: string;
   className?: string;
-  tilt?: string;
 }) {
   return (
-    <figure className={cn("polaroid", tilt, className)}>
-      <span className="tape" aria-hidden />
+    <figure className={cn("overflow-hidden rounded-xl border border-line bg-surface shadow-card", className)}>
       <img src={src} alt={alt} className="aspect-[4/3] w-full object-cover" />
       {caption ? (
-        <figcaption className="mt-2 text-center font-sketch text-xl text-ink">{caption}</figcaption>
+        <figcaption className="border-t border-line px-4 py-2.5 text-sm text-muted">{caption}</figcaption>
       ) : null}
     </figure>
   );
