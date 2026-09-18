@@ -120,14 +120,14 @@
   }
 }
 
-@keyframes ripple-out {
+@keyframes star-ripple {
   from {
-    opacity: 0.55;
-    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0.7;
+    transform: scale(0.28) rotate(0deg);
   }
   to {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(7);
+    transform: scale(5.4) rotate(24deg);
   }
 }
 
@@ -248,16 +248,33 @@
     background: var(--color-primary);
   }
 
-  .click-ripple {
+  .device-outline {
+    position: absolute;
+    color: var(--color-primary);
+    animation: float-device 10s ease-in-out infinite;
+  }
+
+  .star-ripple {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 20;
-    width: 14px;
-    height: 14px;
-    border: 1.5px solid var(--color-primary);
-    border-radius: 9999px;
-    animation: ripple-out 0.85s ease-out forwards;
+    display: grid;
+    width: 28px;
+    height: 28px;
+    margin: -14px 0 0 -14px;
+    color: var(--color-primary);
+  }
+
+  .star-ripple svg {
+    grid-area: 1 / 1;
+    width: 28px;
+    height: 28px;
+    animation: star-ripple 0.9s ease-out forwards;
+  }
+
+  .star-ripple svg:last-child {
+    animation-delay: 0.12s;
   }
 
   .spray-drift {
@@ -359,7 +376,8 @@
   .pulse-ring,
   .float-device,
   .sky-star,
-  .click-ripple {
+  .star-ripple svg,
+  .device-outline {
     animation: none;
   }
 }
