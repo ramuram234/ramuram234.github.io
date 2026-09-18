@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@500;600;700&family=Permanent+Marker&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-marker: "Permanent Marker", "Figtree", cursive;
+  --font-sketch: "Caveat", "Figtree", cursive;
+
+  --color-bg: #f3f1ea;
+  --color-surface: #fffcf6;
+  --color-ink: #15151a;
+  --color-muted: #5c5a54;
+  --color-primary: #0865df;
+  --color-primary-hover: #0654bb;
+  --color-navy: #12141c;
+  --color-navy-2: #1c2230;
+  --color-line: #d9d2c4;
+  --color-paper: #efe8d8;
+  --color-on-primary: #fffcf6;
+  --color-on-navy: #d8d6cf;
+  --color-star: #7eb6ff;
+  --color-spray: #1a8cff;
+
+  --radius-sm: 0.4rem;
+  --radius-md: 0.7rem;
+  --radius-lg: 1.05rem;
+  --radius-xl: 1.6rem;
+
+  --shadow-card: 0 14px 34px -18px rgb(21 21 26 / 0.28);
+
+  --ease-sketch: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-draw: sketch-draw 1.15s var(--ease-sketch) forwards;
+  --animate-rise: sketch-rise 0.7s var(--ease-sketch) forwards;
+  --animate-crawl: mural-crawl 22s linear infinite;
+  --animate-scribble: mural-scribble 5.5s var(--ease-sketch) infinite;
+  --animate-field: field-crawl 24s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes sketch-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sketch-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes mural-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes mural-crawl {
+  to {
+    stroke-dashoffset: -280;
+  }
+}
+
+@keyframes mural-scribble {
+  0% {
+    stroke-dashoffset: 360;
+    opacity: 0.15;
+  }
+  35% {
+    opacity: 0.7;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    opacity: 0.55;
+  }
+  100% {
+    stroke-dashoffset: -360;
+    opacity: 0.12;
+  }
+}
+
+@keyframes spray-drift {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes field-crawl {
+  to {
+    stroke-dashoffset: -420;
+  }
+}
+
+@keyframes tracer-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes mural-drip {
+  from {
+    stroke-dashoffset: 120;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .sketch-paper {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: #f6f0e6;
+  }
+
+  .mural-tag {
+    fill: none;
+    stroke-dasharray: 720;
+    stroke-dashoffset: 720;
+    animation: mural-draw 2.4s var(--ease-sketch) forwards;
+  }
+
+  .mural-line {
+    stroke-dasharray: 10 16;
+    animation: mural-crawl 22s linear infinite;
+  }
+
+  .mural-scribble {
+    stroke-dasharray: 360;
+    animation: mural-scribble 5.5s var(--ease-sketch) infinite;
+  }
+
+  .mural-drip {
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    animation: mural-drip 1.6s var(--ease-sketch) 0.8s forwards;
+  }
+
+  .field-line {
+    stroke-dasharray: 6 18;
+    animation: field-crawl 24s linear infinite;
+  }
+
+  .field-tracer {
+    fill: var(--color-primary);
+    animation: tracer-glow 2.4s ease-in-out infinite;
+  }
+
+  .spray-drift {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: spray-drift 3.8s ease-in-out infinite;
+  }
+
+  .sketch-stroke {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 520;
+    stroke-dashoffset: 520;
+    animation: sketch-draw 1.15s var(--ease-sketch) 0.25s forwards;
+  }
+
+  .polaroid {
+    position: relative;
+    background: var(--color-surface);
+    padding: 0.7rem 0.7rem 2.1rem;
+    border: 1.5px solid color-mix(in oklab, var(--color-ink) 16%, transparent);
+    border-radius: 4px 14px 5px 11px / 10px 4px 12px 5px;
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 250ms var(--ease-sketch),
+      box-shadow 250ms var(--ease-sketch);
+  }
+
+  .polaroid:hover {
+    transform: rotate(0deg) translateY(-6px);
+    box-shadow: 0 22px 40px -20px rgb(21 21 26 / 0.38);
+  }
+
+  .tape {
+    position: absolute;
+    top: -0.7rem;
+    left: 28%;
+    z-index: 2;
+    width: 5.5rem;
+    height: 1.35rem;
+    background: color-mix(in oklab, var(--color-paper) 55%, transparent);
+    border: 1px solid color-mix(in oklab, var(--color-ink) 10%, transparent);
+    transform: rotate(-8deg);
+    box-shadow: 0 1px 0 rgb(21 21 26 / 0.06);
+  }
+
+  .sticker {
+    border-radius: 0.85rem 1.35rem 0.7rem 1.2rem / 1.1rem 0.7rem 1.25rem 0.85rem;
+  }
+
+  .grain {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+  }
+}
+
+@layer utilities {
+  .rise-1 {
+    animation: sketch-rise 0.7s var(--ease-sketch) 0.05s both;
+  }
+  .rise-2 {
+    animation: sketch-rise 0.7s var(--ease-sketch) 0.16s both;
+  }
+  .rise-3 {
+    animation: sketch-rise 0.7s var(--ease-sketch) 0.28s both;
+  }
+  .rise-4 {
+    animation: sketch-rise 0.7s var(--ease-sketch) 0.4s both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .sketch-stroke,
+  .mural-tag,
+  .mural-line,
+  .mural-scribble,
+  .mural-drip,
+  .field-line {
+    stroke-dashoffset: 0;
+  }
+}
