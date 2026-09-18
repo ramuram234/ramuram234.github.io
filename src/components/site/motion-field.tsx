@@ -34,9 +34,6 @@ function Star({ size }: { size: number }) {
 }
 
 export function MotionField() {
-  const spotRef = useRef<HTMLDivElement>(null);
-  const target = useRef({ x: -500, y: -500 });
-  const current = useRef({ x: -500, y: -500 });
   const lastTrail = useRef({ x: -500, y: -500 });
   const nextId = useRef(0);
   const [enabled, setEnabled] = useState(true);
@@ -50,9 +47,13 @@ export function MotionField() {
       return;
     }
 
-    let frame = 0;
     const move = (event: PointerEvent) => {
-      target.current = { x: event.clientX, y: event.clientY };
+      const x = event.clientX;
+      const y = event.clientY;
+      if (Math.hypot(x - lastTrail.current.x, y - lastTrail.current.y) < 10) return;
+      lastTrail.current = { x, y };
+      const dot = { id: ++nextId.current, x, y };
+      setTrail((items) => [...items.slice(-11), dot]);
     };
     const down = (event: PointerEvent) => {
       const mark = { id: ++nextId.current, x: event.clientX, y: event.clientY };
@@ -61,27 +62,10 @@ export function MotionField() {
         setRipples((items) => items.filter((item) => item.id !== mark.id));
       }, 850);
     };
-    const tick = () => {
-      const aim = target.current;
-      const now = current.current;
-      now.x += (aim.x - now.x) * 0.16;
-      now.y += (aim.y - now.y) * 0.16;
-      if (spotRef.current) {
-        spotRef.current.style.transform = `translate3d(${now.x}px, ${now.y}px, 0)`;
-      }
-      if (Math.hypot(now.x - lastTrail.current.x, now.y - lastTrail.current.y) > 10) {
-        lastTrail.current = { x: now.x, y: now.y };
-        const dot = { id: ++nextId.current, x: now.x, y: now.y };
-        setTrail((items) => [...items.slice(-11), dot]);
-      }
-      frame = requestAnimationFrame(tick);
-    };
 
     window.addEventListener("pointermove", move, { passive: true });
     window.addEventListener("pointerdown", down);
-    frame = requestAnimationFrame(tick);
     return () => {
-      cancelAnimationFrame(frame);
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerdown", down);
     };
@@ -105,8 +89,6 @@ export function MotionField() {
           <Star size={star.size} />
         </span>
       ))}
-
-      <div ref={spotRef} className="cursor-spot" />
 
       {trail.map((dot, index) => (
         <span
