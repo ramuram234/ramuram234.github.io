@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
-import { AuroraField } from "@/components/site/aurora-field";
+import { DustField } from "@/components/site/dust-field";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
 
 export function Shell({ current, children }: { current: string; children: ReactNode }) {
   return (
     <div className="relative flex min-h-dvh flex-col bg-bg text-ink">
-      <AuroraField />
+      <DustField />
       <div className="grain" aria-hidden />
       <a
         href="#main"

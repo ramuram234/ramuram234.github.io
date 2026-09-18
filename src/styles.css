@@ -108,16 +108,15 @@
   }
 }
 
-@keyframes aurora-drift {
+@keyframes dust-drift {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0, 0);
+    opacity: 0.12;
   }
-  40% {
-    transform: translate(7%, 5%) scale(1.08);
-  }
-  70% {
-    transform: translate(-5%, 8%) scale(0.96);
+  50% {
+    transform: translate(12px, -28px);
+    opacity: 0.38;
   }
 }
 
@@ -194,7 +193,7 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    background-color: color-mix(in oklab, var(--color-paper) 82%, transparent);
+    background-color: #f6f0e6;
   }
 
   .mural-tag {
@@ -220,41 +219,11 @@
     animation: mural-drip 1.6s var(--ease-sketch) 0.8s forwards;
   }
 
-  .aurora {
+  .dust-mote {
     position: absolute;
     border-radius: 9999px;
-    filter: blur(90px);
-    will-change: transform;
-    animation: aurora-drift 28s ease-in-out infinite;
-  }
-
-  .aurora-a {
-    top: -18%;
-    left: -12%;
-    width: 58vw;
-    height: 58vw;
-    background: color-mix(in oklab, var(--color-primary) 42%, transparent);
-    animation-duration: 26s;
-  }
-
-  .aurora-b {
-    top: -10%;
-    right: -16%;
-    width: 50vw;
-    height: 50vw;
-    background: color-mix(in oklab, var(--color-star) 55%, transparent);
-    animation-duration: 32s;
-    animation-delay: -8s;
-  }
-
-  .aurora-c {
-    bottom: -22%;
-    left: 18%;
-    width: 54vw;
-    height: 46vw;
-    background: color-mix(in oklab, var(--color-primary) 22%, var(--color-paper));
-    animation-duration: 36s;
-    animation-delay: -14s;
+    background: var(--color-primary);
+    animation: dust-drift ease-in-out infinite;
   }
 
   .spray-drift {
@@ -313,7 +282,7 @@
     position: fixed;
     inset: 0;
     z-index: 5;
-    opacity: 0.07;
+    opacity: 0.045;
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
   }
@@ -355,7 +324,7 @@
 
   .pulse-ring,
   .float-device,
-  .aurora {
+  .dust-mote {
     animation: none;
   }
 }
