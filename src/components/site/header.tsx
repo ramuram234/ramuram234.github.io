@@ -25,8 +25,8 @@ export function Header({ current }: { current: string }) {
             src="/images/logo.png"
             alt={company.name}
             className="h-11 w-auto max-w-52 object-contain object-left sm:h-14 sm:max-w-80 lg:h-16 lg:max-w-none"
-            width={900}
-            height={127}
+            width={1354}
+            height={218}
           />
         </Link>
 

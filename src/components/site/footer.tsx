@@ -11,8 +11,8 @@ export function Footer() {
             src="/images/logo-light.png"
             alt={company.name}
             className="h-12 w-auto sm:h-14"
-            width={900}
-            height={176}
+            width={1600}
+            height={377}
           />
           <p className="max-w-xs text-sm leading-relaxed text-on-navy/80">
             Reliable computer, laptop and mobile repair, networking, CCTV and web
