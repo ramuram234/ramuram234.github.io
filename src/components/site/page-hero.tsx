@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Polaroid, SketchTag } from "@/components/site/sketch";
-import { WallArt } from "@/components/site/wall-art";
 
 export function PageHero({
   kicker,
@@ -19,7 +18,6 @@ export function PageHero({
 }) {
   return (
     <section className="sketch-paper relative overflow-hidden border-b border-line">
-      <WallArt />
       <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:py-16">
         <div>
           <SketchTag>{kicker}</SketchTag>

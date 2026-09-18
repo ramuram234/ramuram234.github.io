@@ -45,14 +45,14 @@ function TechHub() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <Link
             to="/tech-hub/mobile"
-            className="group overflow-hidden rounded-xl border border-line bg-surface pb-5 shadow-card transition-transform duration-200 hover:-translate-y-1"
+            className="group overflow-hidden rounded-xl border border-line bg-surface shadow-card transition-transform duration-200 hover:-translate-y-1"
           >
             <img
               src="/images/tech-hub-mobile.jpg"
               alt=""
               className="aspect-[16/10] w-full object-cover"
             />
-            <div className="px-1 pt-4">
+            <div className="px-5 py-4">
               <h3 className="font-display text-xl font-semibold text-ink">Mobiles</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">
                 Tips, troubleshooting and how the hardware inside your phone actually works.
@@ -68,10 +68,10 @@ function TechHub() {
               key={guide.slug}
               to="/tech-hub/$slug"
               params={{ slug: guide.slug }}
-              className="group overflow-hidden rounded-xl border border-line bg-surface pb-5 shadow-card transition-transform duration-200 hover:-translate-y-1"
+              className="group overflow-hidden rounded-xl border border-line bg-surface shadow-card transition-transform duration-200 hover:-translate-y-1"
             >
               <img src={guide.image} alt="" className="aspect-[16/10] w-full object-cover" />
-              <div className="px-1 pt-4">
+              <div className="px-5 py-4">
                 <h3 className="font-display text-xl font-semibold text-ink">{guide.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{guide.lede}</p>
                 <span className="mt-3 inline-flex items-center gap-1 font-marker text-base text-primary">

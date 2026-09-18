@@ -1,53 +1,131 @@
-const routes = [
-  "M-40 120 C 220 40, 480 200, 760 90 S 1200 40, 1520 180",
-  "M-20 340 C 260 260, 520 420, 840 300 S 1220 250, 1500 380",
-  "M-30 560 C 200 480, 560 640, 880 520 S 1240 500, 1520 620",
-  "M-40 780 C 280 700, 540 840, 900 740 S 1280 700, 1520 820",
-  "M 180 -20 C 120 180, 260 360, 140 560 S 280 780, 120 940",
-  "M 1280 -30 C 1360 160, 1180 340, 1340 540 S 1200 760, 1380 960",
-  "M-20 40 C 400 80, 700 -10, 980 90 S 1300 20, 1520 110",
-  "M 80 940 C 360 820, 640 900, 920 800 S 1240 860, 1480 780",
+const circuitTraces = [
+  "M-20 80 H180 V160 H300 V80 H460 V220 H620",
+  "M-20 280 H130 V360 H250 V440 H110 V520 H-20",
+  "M1460 70 H1270 V150 H1130 V70 H970 V230 H820",
+  "M1460 310 H1320 V400 H1180 V310 H1040 V480 H1460",
+  "M-20 640 H160 V720 H320 V640 H500 V800 H680",
+  "M1460 680 H1280 V760 H1120 V680 H960 V840 H800",
+  "M520 0 V120 H680 V40 H860 V180 H1040",
+  "M80 900 V780 H240 V860 H420 V740 H580",
+  "M1380 900 V790 H1220 V870 H1060 V750",
 ];
 
-const scribbles = [
-  "M 60 200 c 40-50 110-10 90 40 -24 62 70 74 112 16",
-  "M 1220 140 c 36-48 100-12 86 34 -16 50 58 58 94 6",
-  "M 90 680 c 50-40 120 8 96 54 -22 48 64 62 108 12",
-  "M 1180 720 c 44-52 118 0 98 46 -20 50 70 56 110 8",
+const memoryTraces = [
+  "M180 220 H1260",
+  "M180 250 H1260",
+  "M180 280 H1260",
+  "M180 310 H1260",
+  "M180 340 H1260",
+  "M180 580 H1260",
+  "M180 610 H1260",
+  "M180 640 H1260",
+  "M320 160 V740",
+  "M1120 160 V740",
+  "M180 160 H320 V220",
+  "M1260 160 H1120 V220",
+  "M180 740 H320 V640",
+  "M1260 740 H1120 V640",
 ];
 
-export function SketchField() {
+const vias = [
+  [180, 80],
+  [180, 160],
+  [300, 160],
+  [300, 80],
+  [460, 80],
+  [460, 220],
+  [130, 280],
+  [130, 360],
+  [250, 360],
+  [250, 440],
+  [1270, 70],
+  [1270, 150],
+  [1130, 150],
+  [1130, 70],
+  [160, 640],
+  [160, 720],
+  [320, 720],
+  [320, 640],
+  [680, 120],
+  [860, 40],
+  [240, 780],
+  [1220, 790],
+];
+
+const chips = [
+  { x: 86, y: 176, w: 78, h: 46 },
+  { x: 1288, y: 196, w: 86, h: 50 },
+  { x: 210, y: 548, w: 70, h: 40 },
+  { x: 1188, y: 548, w: 92, h: 48 },
+];
+
+const memoryChips = [
+  { x: 48, y: 200, w: 120, h: 160 },
+  { x: 1272, y: 200, w: 120, h: 160 },
+  { x: 48, y: 560, w: 120, h: 140 },
+  { x: 1272, y: 560, w: 120, h: 140 },
+];
+
+export function SketchField({
+  motif = "circuit",
+}: {
+  motif?: "circuit" | "memory";
+}) {
+  const traces = motif === "memory" ? memoryTraces : circuitTraces;
+  const packages = motif === "memory" ? memoryChips : chips;
+
   return (
     <svg
       viewBox="0 0 1440 900"
-      preserveAspectRatio="none"
+      preserveAspectRatio="xMidYMid slice"
       className="pointer-events-none fixed inset-0 z-0 size-full text-primary"
       aria-hidden
     >
-      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" opacity="0.4">
-        {routes.map((d, i) => (
-          <path
-            key={d}
-            d={d}
-            className="field-line"
-            strokeWidth={i % 3 === 0 ? 1.8 : 1.25}
-            style={{ animationDuration: `${18 + i * 3}s`, animationDelay: `${-i * 2.4}s` }}
-          />
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+        opacity="0.34"
+      >
+        {traces.map((d) => (
+          <path key={d} d={d} className="circuit-trace" strokeWidth={motif === "memory" ? 1.6 : 1.35} />
         ))}
-        {scribbles.map((d, i) => (
-          <path
-            key={d}
-            d={d}
-            className="mural-scribble"
-            strokeWidth="2.4"
-            style={{ animationDelay: `${-i * 1.3}s` }}
+      </g>
+
+      <g fill="none" stroke="currentColor" strokeWidth="1.4" opacity="0.28">
+        {packages.map((c) => (
+          <rect
+            key={`${c.x}-${c.y}`}
+            x={c.x}
+            y={c.y}
+            width={c.w}
+            height={c.h}
+            rx="3"
           />
         ))}
       </g>
 
-      {routes.slice(0, 4).map((d, i) => (
-        <circle key={d} r={i === 0 ? 4.5 : 3.4} className="field-tracer" fill="currentColor">
-          <animateMotion dur={`${11 + i * 3}s`} repeatCount="indefinite" path={d} rotate="auto" />
+      {motif === "circuit" ? (
+        <g fill="currentColor" opacity="0.32">
+          {vias.map(([x, y]) => (
+            <circle key={`${x}-${y}`} cx={x} cy={y} r="2.4" />
+          ))}
+        </g>
+      ) : (
+        <g fill="none" stroke="currentColor" strokeWidth="1.1" opacity="0.22">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <path
+              key={i}
+              d={`M60 ${218 + i * 22} h96`}
+            />
+          ))}
+        </g>
+      )}
+
+      {traces.slice(0, 5).map((d, i) => (
+        <circle key={d} r={i === 0 ? 3.6 : 2.8} className="field-tracer" fill="currentColor">
+          <animateMotion dur={`${9 + i * 2.2}s`} repeatCount="indefinite" path={d} />
         </circle>
       ))}
     </svg>

@@ -67,20 +67,26 @@ function TopicPage() {
         <div className="mx-auto grid w-full min-w-0 max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_16rem]">
           <ArticleBody blocks={ramStorageBlocks} skipFirstImage />
           <aside className="hidden lg:block">
-            <div className="sticky top-28 rounded-xl border border-line bg-surface p-4">
-              <p className="text-xs font-semibold tracking-[0.16em] text-primary uppercase">
+            <nav
+              aria-label="On this page"
+              className="sticky top-24 max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-xl border border-line bg-surface p-4"
+            >
+              <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">
                 On this page
               </p>
-              <ul className="mt-3 space-y-2 text-sm">
+              <ul className="mt-3 space-y-1.5">
                 {toc.map((h) => (
                   <li key={h}>
-                    <a href={`#${slugify(h)}`} className="font-sketch text-lg text-primary hover:underline">
+                    <a
+                      href={`#${slugify(h)}`}
+                      className="block text-sm leading-snug text-ink/80 hover:text-primary"
+                    >
                       {h}
                     </a>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           </aside>
         </div>
         <section className="border-t border-line bg-surface">

@@ -54,7 +54,7 @@ export const services = [
     slug: "mobile-repair",
     title: "Mobile Repair",
     summary: "Android and iPhone hardware and software solutions, done properly.",
-    image: "/images/tech-hub-mobile.jpg",
+    image: "/images/mobile-repair.jpg",
     details: [
       "Screen, battery, charging port and camera module work",
       "Water-damage assessment and board-level inspection",

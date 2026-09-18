@@ -6,7 +6,7 @@ import { SketchField } from "@/components/site/sketch-field";
 export function Shell({ current, children }: { current: string; children: ReactNode }) {
   return (
     <div className="relative flex min-h-dvh flex-col bg-bg text-ink">
-      <SketchField />
+      <SketchField motif={current.startsWith("/tech-hub") ? "memory" : "circuit"} />
       <div className="grain" aria-hidden />
       <a
         href="#main"
@@ -15,7 +15,7 @@ export function Shell({ current, children }: { current: string; children: ReactN
         Skip to content
       </a>
       <Header current={current} />
-      <main id="main" className="relative z-10 min-w-0 flex-1 overflow-x-hidden">
+      <main id="main" className="relative z-10 min-w-0 flex-1">
         {children}
       </main>
       <Footer />

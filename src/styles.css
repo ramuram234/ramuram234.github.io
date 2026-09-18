@@ -108,9 +108,9 @@
   }
 }
 
-@keyframes field-crawl {
+@keyframes circuit-flow {
   to {
-    stroke-dashoffset: -420;
+    stroke-dashoffset: -320;
   }
 }
 
@@ -200,9 +200,11 @@
     animation: mural-drip 1.6s var(--ease-sketch) 0.8s forwards;
   }
 
-  .field-line {
-    stroke-dasharray: 6 18;
-    animation: field-crawl 24s linear infinite;
+  .circuit-trace {
+    fill: none;
+    stroke: currentColor;
+    stroke-dasharray: 12 14;
+    animation: circuit-flow 16s linear infinite;
   }
 
   .field-tracer {
@@ -301,7 +303,8 @@
   .mural-line,
   .mural-scribble,
   .mural-drip,
-  .field-line {
+  .field-line,
+  .circuit-trace {
     stroke-dashoffset: 0;
   }
 }

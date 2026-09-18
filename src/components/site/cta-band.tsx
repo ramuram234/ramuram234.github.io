@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { WallArt } from "@/components/site/wall-art";
 import { company } from "@/data/site";
 
 export function CtaBand({
@@ -12,7 +11,6 @@ export function CtaBand({
 }) {
   return (
     <section className="relative overflow-hidden bg-navy">
-      <WallArt tone="night" />
       <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-14 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <h2 className="font-marker text-3xl leading-tight text-on-primary sm:text-4xl">

@@ -14,7 +14,6 @@ import { CtaBand } from "@/components/site/cta-band";
 import { SketchMarquee } from "@/components/site/marquee";
 import { Polaroid, SketchArrow, SketchTag, SketchWord, SprayBurst } from "@/components/site/sketch";
 import { Shell } from "@/components/site/shell";
-import { WallArt } from "@/components/site/wall-art";
 import { company, services, testimonials, whyChoose } from "@/data/site";
 
 export const Route = createFileRoute("/")({
@@ -37,7 +36,6 @@ function Home() {
   return (
     <Shell current="/">
       <section className="sketch-paper relative overflow-hidden border-b border-line">
-        <WallArt />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-20">
           <div>
             <p className="rise-1">
@@ -73,11 +71,16 @@ function Home() {
             </div>
           </div>
           <div className="relative">
-            <Polaroid
-              src="/images/hero.jpg"
-              alt="Computer and mobile repair"
-              className="lg:ml-6"
-            />
+            <figure className="relative overflow-hidden rounded-xl border border-line bg-surface shadow-card lg:ml-6">
+              <img
+                src="/images/hero.jpg"
+                alt="Laptop, desktop and phone ready for build, repair and upgrade"
+                className="aspect-[4/3] w-full object-cover object-center"
+              />
+              <p className="absolute top-4 right-4 rounded-lg bg-surface/92 px-3 py-1.5 font-marker text-xl leading-none text-primary shadow-card sm:top-5 sm:right-5 sm:text-2xl">
+                Our expertise
+              </p>
+            </figure>
             <div className="absolute -bottom-4 left-2 flex items-center gap-3 rounded-xl border border-ink/10 bg-surface px-4 py-3 shadow-card sm:left-4">
               <span className="flex size-10 items-center justify-center rounded-md bg-primary text-on-primary">
                 <BadgeCheck className="size-5" />
@@ -149,10 +152,10 @@ function Home() {
                 key={service.slug}
                 to="/services"
                 hash={service.slug}
-                className="group overflow-hidden rounded-xl border border-line bg-surface pb-5 shadow-card transition-transform duration-200 hover:-translate-y-1"
+                className="group overflow-hidden rounded-xl border border-line bg-surface shadow-card transition-transform duration-200 hover:-translate-y-1"
               >
                 <img src={service.image} alt="" className="aspect-[16/10] w-full object-cover" />
-                <div className="px-1 pt-4">
+                <div className="px-5 py-4">
                   <h3 className="font-display text-lg font-semibold text-ink">{service.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted">{service.summary}</p>
                   <span className="mt-3 inline-flex items-center gap-1 font-marker text-base text-primary">
@@ -173,7 +176,6 @@ function Home() {
           className="absolute inset-0 size-full object-cover"
         />
         <div className="absolute inset-0 bg-navy/84" />
-        <WallArt tone="night" className="opacity-80" />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-6 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <SketchTag>Service at your door</SketchTag>
