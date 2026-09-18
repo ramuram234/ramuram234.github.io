@@ -4,6 +4,8 @@ Website for **Star Computers** — computer, laptop and mobile repair, networkin
 
 **Live site:** [https://ramuram234.github.io](https://ramuram234.github.io)
 
+**Code:** this `source` branch. GitHub Pages publishes the built site from `main`.
+
 ## Local development
 
 ```bash
@@ -19,4 +21,10 @@ Open [http://localhost:8080](http://localhost:8080).
 npm run build
 ```
 
-GitHub Pages deploys automatically from `main` via GitHub Actions.
+To rebuild GitHub Pages locally:
+
+```bash
+NITRO_PRESET=github_pages npm run build
+```
+
+Output is written to `.output/public`.
