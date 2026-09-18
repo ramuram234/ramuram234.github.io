@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
-import { DustField } from "@/components/site/dust-field";
+import { MotionField } from "@/components/site/motion-field";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
 
 export function Shell({ current, children }: { current: string; children: ReactNode }) {
   return (
     <div className="relative flex min-h-dvh flex-col bg-bg text-ink">
-      <DustField />
+      <MotionField />
       <div className="grain" aria-hidden />
       <a
         href="#main"
