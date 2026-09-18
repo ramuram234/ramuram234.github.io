@@ -1,0 +1,1 @@
+import{c as e}from"./createLucideIcon-C20vfABw.js";import{n as t,r as n,s as r}from"./index-CffunSaX.js";import{t as i}from"./guide-view-C21i46rB.js";var a=e();function o(){let{slug:e}=t.useParams(),o=n(e);if(!o)throw r();return(0,a.jsx)(i,{guide:o,crumbs:[{to:`/tech-hub`,label:`Tech Hub`}]})}export{o as component};
