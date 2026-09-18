@@ -42,13 +42,14 @@ function Star({ size }: { size: number }) {
   );
 }
 
-function StarRippleIcon() {
+function StarRippleIcon({ outline = false }: { outline?: boolean }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+    <svg viewBox="0 0 32 32" aria-hidden>
       <path
-        d="M12 1.2 14.5 9.1 22.8 12 14.5 14.9 12 22.8 9.5 14.9 1.2 12 9.5 9.1Z"
+        d="M16 2.2 19.9 12.1 30.8 13.2 22.6 20.3 25 31 16 25.6 7 31 9.4 20.3 1.2 13.2 12.1 12.1Z"
+        fill={outline ? "none" : "currentColor"}
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth={outline ? 1.8 : 1}
         strokeLinejoin="round"
       />
     </svg>
@@ -175,8 +176,12 @@ export function MotionField() {
 
       {ripples.map((ripple) => (
         <span key={ripple.id} className="star-ripple" style={{ left: ripple.x, top: ripple.y }}>
-          <StarRippleIcon />
-          <StarRippleIcon />
+          <span className="star-ripple-burst">
+            <StarRippleIcon />
+          </span>
+          <span className="star-ripple-burst star-ripple-burst-late">
+            <StarRippleIcon outline />
+          </span>
         </span>
       ))}
     </div>
