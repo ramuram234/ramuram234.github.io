@@ -8,11 +8,11 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-4">
           <img
-            src="/images/logo-blue.jpg"
+            src="/images/logo-light.png"
             alt={company.name}
-            className="h-10 w-auto"
-            width={280}
-            height={93}
+            className="h-12 w-auto sm:h-14"
+            width={900}
+            height={176}
           />
           <p className="max-w-xs text-sm leading-relaxed text-on-navy/80">
             Reliable computer, laptop and mobile repair, networking, CCTV and web

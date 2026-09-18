@@ -18,19 +18,19 @@ export function Header({ current }: { current: string }) {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-surface/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center gap-4 px-4 sm:px-6">
-        <Link to="/" className="mr-auto flex items-center" onClick={() => setOpen(false)}>
+    <header className="sticky top-0 z-40 border-b border-line bg-surface/90 backdrop-blur-sm">
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:h-20 sm:gap-4 sm:px-6">
+        <Link to="/" className="mr-auto flex min-w-0 items-center" onClick={() => setOpen(false)}>
           <img
-            src="/images/logo.jpg"
+            src="/images/logo.png"
             alt={company.name}
-            className="h-9 w-auto sm:h-10"
-            width={280}
-            height={93}
+            className="h-11 w-auto max-w-52 object-contain object-left sm:h-14 sm:max-w-80 lg:h-16 lg:max-w-none"
+            width={900}
+            height={127}
           />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-5 lg:flex" aria-label="Primary">
           {navLinks.map((link) => (
             <Link
               key={link.to}

@@ -114,13 +114,26 @@
   }
 }
 
-@keyframes tracer-glow {
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.35);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+@keyframes float-device {
   0%,
   100% {
-    opacity: 0.35;
+    transform: translateY(0);
+    opacity: 0.22;
   }
   50% {
-    opacity: 1;
+    transform: translateY(-16px);
+    opacity: 0.4;
   }
 }
 
@@ -210,6 +223,18 @@
   .field-tracer {
     fill: var(--color-primary);
     animation: tracer-glow 2.4s ease-in-out infinite;
+  }
+
+  .pulse-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pulse-ring 4.5s var(--ease-sketch) infinite;
+  }
+
+  .float-device {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: float-device 9s ease-in-out infinite;
   }
 
   .spray-drift {
@@ -306,5 +331,10 @@
   .field-line,
   .circuit-trace {
     stroke-dashoffset: 0;
+  }
+
+  .pulse-ring,
+  .float-device {
+    animation: none;
   }
 }

@@ -7,64 +7,72 @@ const circuitTraces = [
   "M1460 680 H1280 V760 H1120 V680 H960 V840 H800",
   "M520 0 V120 H680 V40 H860 V180 H1040",
   "M80 900 V780 H240 V860 H420 V740 H580",
-  "M1380 900 V790 H1220 V870 H1060 V750",
 ];
 
 const memoryTraces = [
-  "M180 220 H1260",
-  "M180 250 H1260",
-  "M180 280 H1260",
-  "M180 310 H1260",
-  "M180 340 H1260",
-  "M180 580 H1260",
-  "M180 610 H1260",
-  "M180 640 H1260",
-  "M320 160 V740",
-  "M1120 160 V740",
-  "M180 160 H320 V220",
-  "M1260 160 H1120 V220",
-  "M180 740 H320 V640",
-  "M1260 740 H1120 V640",
+  "M180 240 H1260",
+  "M180 270 H1260",
+  "M180 300 H1260",
+  "M180 330 H1260",
+  "M180 600 H1260",
+  "M180 630 H1260",
+  "M320 180 V720",
+  "M1120 180 V720",
 ];
 
-const vias = [
-  [180, 80],
-  [180, 160],
-  [300, 160],
-  [300, 80],
-  [460, 80],
-  [460, 220],
-  [130, 280],
-  [130, 360],
-  [250, 360],
-  [250, 440],
-  [1270, 70],
-  [1270, 150],
-  [1130, 150],
-  [1130, 70],
-  [160, 640],
-  [160, 720],
-  [320, 720],
-  [320, 640],
-  [680, 120],
-  [860, 40],
-  [240, 780],
-  [1220, 790],
+const pings = [
+  { cx: 180, cy: 160, delay: "0s" },
+  { cx: 1270, cy: 150, delay: "1.2s" },
+  { cx: 320, cy: 640, delay: "2.1s" },
+  { cx: 1120, cy: 680, delay: "0.6s" },
+  { cx: 680, cy: 120, delay: "1.8s" },
 ];
 
-const chips = [
-  { x: 86, y: 176, w: 78, h: 46 },
-  { x: 1288, y: 196, w: 86, h: 50 },
-  { x: 210, y: 548, w: 70, h: 40 },
-  { x: 1188, y: 548, w: 92, h: 48 },
-];
+function LaptopIcon({ x, y, delay }: { x: number; y: number; delay: string }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <g className="float-device" style={{ animationDelay: delay }}>
+        <rect x="0" y="0" width="54" height="32" rx="3" />
+        <path d="M-6 36h66" />
+        <path d="M16 36h22" />
+      </g>
+    </g>
+  );
+}
 
-const memoryChips = [
-  { x: 48, y: 200, w: 120, h: 160 },
-  { x: 1272, y: 200, w: 120, h: 160 },
-  { x: 48, y: 560, w: 120, h: 140 },
-  { x: 1272, y: 560, w: 120, h: 140 },
-];
+function PhoneIcon({ x, y, delay }: { x: number; y: number; delay: string }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <g className="float-device" style={{ animationDelay: delay }}>
+        <rect x="0" y="0" width="22" height="38" rx="4" />
+        <circle cx="11" cy="33" r="1.4" fill="currentColor" stroke="none" />
+      </g>
+    </g>
+  );
+}
+
+function ChipIcon({ x, y, delay }: { x: number; y: number; delay: string }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <g className="float-device" style={{ animationDelay: delay }}>
+        <rect x="8" y="8" width="28" height="28" rx="3" />
+        <path d="M14 8v-6m8 6v-6m8 6v-6M14 36v6m8-6v6m8-6v6M8 14h-6m6 8h-6m6 8h-6M36 14h6m-6 8h6m-6 8h6" />
+      </g>
+    </g>
+  );
+}
+
+function WifiIcon({ x, y, delay }: { x: number; y: number; delay: string }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <g className="float-device" style={{ animationDelay: delay }}>
+        <path d="M4 22c8-10 24-10 32 0" />
+        <path d="M10 27c5-6 15-6 20 0" />
+        <circle cx="20" cy="33" r="2.2" fill="currentColor" stroke="none" />
+      </g>
+    </g>
+  );
+}
 
 export function SketchField({
   motif = "circuit",
@@ -72,7 +80,6 @@ export function SketchField({
   motif?: "circuit" | "memory";
 }) {
   const traces = motif === "memory" ? memoryTraces : circuitTraces;
-  const packages = motif === "memory" ? memoryChips : chips;
 
   return (
     <svg
@@ -86,46 +93,62 @@ export function SketchField({
         stroke="currentColor"
         strokeLinecap="square"
         strokeLinejoin="miter"
-        opacity="0.34"
+        opacity="0.22"
       >
         {traces.map((d) => (
-          <path key={d} d={d} className="circuit-trace" strokeWidth={motif === "memory" ? 1.6 : 1.35} />
+          <path key={d} d={d} className="circuit-trace" strokeWidth="1.3" />
         ))}
       </g>
 
-      <g fill="none" stroke="currentColor" strokeWidth="1.4" opacity="0.28">
-        {packages.map((c) => (
-          <rect
-            key={`${c.x}-${c.y}`}
-            x={c.x}
-            y={c.y}
-            width={c.w}
-            height={c.h}
-            rx="3"
+      {pings.map((p) => (
+        <g key={`${p.cx}-${p.cy}`} opacity="0.45">
+          <circle cx={p.cx} cy={p.cy} r="4" fill="currentColor" className="field-tracer" />
+          <circle
+            cx={p.cx}
+            cy={p.cy}
+            r="18"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            className="pulse-ring"
+            style={{ animationDelay: p.delay }}
           />
-        ))}
+          <circle
+            cx={p.cx}
+            cy={p.cy}
+            r="18"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            className="pulse-ring"
+            style={{ animationDelay: `calc(${p.delay} + 1.5s)` }}
+          />
+        </g>
+      ))}
+
+      <g fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.28">
+        {motif === "memory" ? (
+          <>
+            <ChipIcon x={70} y={220} delay="0s" />
+            <ChipIcon x={1290} y={520} delay="-2s" />
+            <LaptopIcon x={1180} y={80} delay="-3.4s" />
+            <PhoneIcon x={90} y={640} delay="-1.2s" />
+          </>
+        ) : (
+          <>
+            <LaptopIcon x={70} y={420} delay="0s" />
+            <PhoneIcon x={1320} y={240} delay="-1.6s" />
+            <ChipIcon x={1080} y={620} delay="-2.8s" />
+            <WifiIcon x={160} y={700} delay="-0.8s" />
+            <LaptopIcon x={1180} y={40} delay="-3.5s" />
+            <PhoneIcon x={40} y={120} delay="-2.2s" />
+          </>
+        )}
       </g>
 
-      {motif === "circuit" ? (
-        <g fill="currentColor" opacity="0.32">
-          {vias.map(([x, y]) => (
-            <circle key={`${x}-${y}`} cx={x} cy={y} r="2.4" />
-          ))}
-        </g>
-      ) : (
-        <g fill="none" stroke="currentColor" strokeWidth="1.1" opacity="0.22">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <path
-              key={i}
-              d={`M60 ${218 + i * 22} h96`}
-            />
-          ))}
-        </g>
-      )}
-
-      {traces.slice(0, 5).map((d, i) => (
-        <circle key={d} r={i === 0 ? 3.6 : 2.8} className="field-tracer" fill="currentColor">
-          <animateMotion dur={`${9 + i * 2.2}s`} repeatCount="indefinite" path={d} />
+      {traces.slice(0, 4).map((d, i) => (
+        <circle key={d} r={i === 0 ? 3.4 : 2.6} className="field-tracer" fill="currentColor">
+          <animateMotion dur={`${10 + i * 2}s`} repeatCount="indefinite" path={d} />
         </circle>
       ))}
     </svg>

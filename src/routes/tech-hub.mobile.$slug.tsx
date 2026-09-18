@@ -69,7 +69,7 @@ function TopicPage() {
           <aside className="hidden lg:block">
             <nav
               aria-label="On this page"
-              className="sticky top-24 max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-xl border border-line bg-surface p-4"
+              className="sticky top-24 max-h-[calc(100dvh-7.5rem)] overflow-y-auto rounded-xl border border-line bg-surface p-4 sm:top-28"
             >
               <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">
                 On this page
